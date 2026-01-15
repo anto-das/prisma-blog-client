@@ -27,7 +27,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { ModeToggle } from "./layouts/ModeToogle";
+import { ModeToggle } from "./layouts/ModeToggle";
 
 interface MenuItem {
   title: string;
@@ -69,23 +69,27 @@ const Navbar = ({
   menu = [
     { title: "Home", url: "/" },
     {
-      title: "About",
+      title: "about",
       url: "/about",
     },
     {
       title: "Contact",
       url: "/contact",
     },
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+    },
   ],
   auth = {
     login: { title: "Login", url: "/login" },
-    signup: { title: "Sign up", url: "/register" },
+    signup: { title: "Register", url: "/register" },
   },
   className,
 }: Navbar1Props) => {
   return (
     <section className={cn("py-4", className)}>
-      <div className="container mx-auto px-4">
+      <div className="w-11/12 mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -109,7 +113,7 @@ const Navbar = ({
             </div>
           </div>
           <div className="flex gap-2">
-            <ModeToggle/>
+            <ModeToggle />
             <Button asChild variant="outline" size="sm">
               <Link href={auth.login.url}>{auth.login.title}</Link>
             </Button>
@@ -158,7 +162,6 @@ const Navbar = ({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <ModeToggle/>
                     <Button asChild variant="outline">
                       <a href={auth.login.url}>{auth.login.title}</a>
                     </Button>
@@ -180,7 +183,8 @@ const renderMenuItem = (item: MenuItem) => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
-        href={item.url} asChild
+        href={item.url}
+        asChild
         className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
       >
         <Link href={item.url}>{item.title}</Link>
