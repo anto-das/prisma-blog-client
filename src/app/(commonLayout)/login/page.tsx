@@ -1,11 +1,11 @@
-import React from 'react'
+import { LoginForm } from "@/components/modules/authentication/LoginForm";
 
 const LoginPage = () => {
   return (
     <div>
-      prisma blog app login page.....
+      <LoginForm />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

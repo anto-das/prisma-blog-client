@@ -1,11 +1,11 @@
-import React from 'react'
+import { RegisterForm } from "@/components/modules/authentication/RegisterForm";
 
 const Register = () => {
   return (
     <div>
-      prisma blog app register.....
+      <RegisterForm />
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
