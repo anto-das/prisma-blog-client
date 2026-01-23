@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export default async function Home() {
   const cookieStore = await cookies();
-  console.log(cookieStore.toString());
+  // console.log(cookieStore.getAll());
   // const session = await authClient.getSession();
 
   const res = await fetch("http://localhost:5000/api/auth/get-session", {
