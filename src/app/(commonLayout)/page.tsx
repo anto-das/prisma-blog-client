@@ -1,4 +1,5 @@
 import { authClient } from "@/lib/auth-client";
+import { userServices } from "@/services/user.service";
 import { cookies } from "next/headers";
 
 export default async function Home() {
@@ -18,6 +19,8 @@ export default async function Home() {
   //   },
   // );
   // // console.log(await res.json());
+  const session = await userServices.getSession();
+  console.log(session);
   return (
     <div>
       <h1 className="text-3xl text-blue-500 font-bold text-center">
