@@ -35,7 +35,7 @@ const LoginForm = ({
   className,
 }: Login1Props) => {
   const handleLoginWithGoogle = async () => {
-     await authClient.signIn.social({
+    const res = authClient.signIn.social({
       provider: "google",
       callbackURL: "http://localhost:3000",
     });
