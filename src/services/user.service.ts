@@ -15,11 +15,11 @@ export const userServices = {
         },
         cache: "no-store",
       });
-      const session = await res.json()
-      if (session === null){
-        return {data:session , error:{message:"somthing went wrong.."}}
+      const session = await res.json();
+      if (session === null) {
+        return { data: null, error: { message: "somthing went wrong.." } };
       }
-        return { data: session, error: { message: "token is missing..." } };
+      return { data: session, error: null };
       // console.log(await res.json());
     } catch (err) {
       return { data: null, error: { message: "something went wrong..." } };
