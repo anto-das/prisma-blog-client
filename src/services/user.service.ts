@@ -1,6 +1,9 @@
+import { env } from "@/env";
 import { authClient } from "@/lib/auth-client";
 import { getSession } from "better-auth/api";
 import { cookies } from "next/headers";
+
+const AUTH_URL = env.AUTH_URL;
 
 export const userServices = {
   getSession: async function () {
@@ -9,7 +12,7 @@ export const userServices = {
       console.log(cookieStore.getAll());
       // const session = await authClient.getSession();
 
-      const res = await fetch("http://localhost:5000/api/auth/get-session", {
+      const res = await fetch(`${AUTH_URL}/get-session`, {
         headers: {
           Cookie: cookieStore.toString(),
         },

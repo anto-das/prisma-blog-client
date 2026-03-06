@@ -1,24 +1,6 @@
-import { authClient } from "@/lib/auth-client";
 import { userServices } from "@/services/user.service";
-import { cookies } from "next/headers";
 
 export default async function Home() {
-  // const session = await authClient.getSession();
-  // console.log(session)
-  // const cookieStore = await cookies();
-  // console.log(cookieStore.getAll());
-  // const session = await authClient.getSession();
-
-  // const res = await fetch(
-  //   "http://localhost:5000/api/auth/get-session",
-  //   {
-  //     headers: {
-  //       Cookie: cookieStore.toString(),
-  //     },
-  //     cache: "no-store",
-  //   },
-  // );
-  // // console.log(await res.json());
   const session = await userServices.getSession();
   console.log(session.data);
   return (
