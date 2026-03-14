@@ -9,7 +9,7 @@ export const userServices = {
   getSession: async function () {
     try {
       const cookieStore = await cookies();
-      console.log(cookieStore.getAll());
+      // console.log("get all cookie", cookieStore.getAll());
       // const session = await authClient.getSession();
 
       const res = await fetch(`${AUTH_URL}/get-session`, {

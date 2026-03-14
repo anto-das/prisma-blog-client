@@ -73,8 +73,8 @@ const Navbar = ({
       url: "/about",
     },
     {
-      title: "Contact",
-      url: "/contact",
+      title: "Blog",
+      url: "/blog",
     },
     {
       title: "Dashboard",
@@ -94,14 +94,14 @@ const Navbar = ({
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-2">
             {/* Logo */}
-              <img
-                src={logo.src}
-                className="max-h-8 dark:invert"
-                alt={logo.alt}
-              />
-              <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span>
+            <img
+              src={logo.src}
+              className="max-h-8 dark:invert"
+              alt={logo.alt}
+            />
+            <span className="text-lg font-semibold tracking-tighter">
+              {logo.title}
+            </span>
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
