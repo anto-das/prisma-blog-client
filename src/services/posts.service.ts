@@ -1,5 +1,9 @@
 import { env } from "@/env";
 
+// No Dynamic and No { cache:no-store } : SSG => Static Page
+// {cache:no-store}:SSR => Dynamic Page
+// {next:{revalidate:10}}:ISR => Mix between Dynamic and Static.
+
 export const blogService = {
   getBlog: async () => {
     try {
