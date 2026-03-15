@@ -7,8 +7,11 @@ import { env } from "@/env";
 export const blogService = {
   getBlog: async () => {
     try {
-      const res = await fetch(`${env.BACKEND_URL}/posts`);
+      const res = await fetch(`${env.BACKEND_URL}/posts`, {
+        next: { revalidate: 10 },
+      });
       const data = await res.json();
+      console.log(data.data);
       return { data, error: null };
     } catch (err: any) {
       return {

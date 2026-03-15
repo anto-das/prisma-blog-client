@@ -1,16 +1,22 @@
-import { Card } from "@/components/ui/card";
+import BlogCard from "@/components/modules/homepage/BlogCard";
 import { blogService } from "@/services/posts.service";
-import { BlogCard } from "../../components/modules/homepage/BlogCard";
-export default async function Home() {
-  // const session = await userServices.getSession();
-  // console.log(session.data);
+import { Post } from "@/types";
+
+const Home = async () => {
   const { data } = await blogService.getBlog();
-  console.log(data);
+  console.log(data?.data);
   return (
-    <div className="grid grid-cols-2 w-11/12 gap-4 mx-auto space-y-5">
-      <BlogCard></BlogCard>
-      <BlogCard></BlogCard>
-      <BlogCard></BlogCard>
+    <div>
+      <h2 className="text-3xl font-bold text-center my-5">
+        Length : {data?.data?.data?.length}
+      </h2>
+      <div className="w-11/12 mx-auto grid grid-cols-4 gap-3">
+        {data?.data?.data?.map((post: Post) => (
+          <BlogCard key={post?.post_id} post={post}></BlogCard>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
