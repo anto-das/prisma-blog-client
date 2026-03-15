@@ -1,16 +1,16 @@
+import { Card } from "@/components/ui/card";
 import { blogService } from "@/services/posts.service";
-import { userServices } from "@/services/user.service";
-
+import { BlogCard } from "../../components/modules/homepage/BlogCard";
 export default async function Home() {
   // const session = await userServices.getSession();
   // console.log(session.data);
   const { data } = await blogService.getBlog();
   console.log(data);
   return (
-    <div>
-      <h1 className="text-3xl text-blue-500 font-bold text-center">
-        Hello Prisma Blog This is Home Route.....🙂
-      </h1>
+    <div className="grid grid-cols-2 w-11/12 gap-4 mx-auto space-y-5">
+      <BlogCard></BlogCard>
+      <BlogCard></BlogCard>
+      <BlogCard></BlogCard>
     </div>
   );
 }
