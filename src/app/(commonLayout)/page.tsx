@@ -3,7 +3,7 @@ import { blogService } from "@/services/posts.service";
 import { Post } from "@/types";
 
 const Home = async () => {
-  const { data } = await blogService.getBlog();
+  const { data } = await blogService.getBlog({ isFeatured: false,search:"one" },{cache:"no-store"});
   console.log(data?.data);
   return (
     <div>
