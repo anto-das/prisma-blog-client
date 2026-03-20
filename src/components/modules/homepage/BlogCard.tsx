@@ -9,15 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Post } from "@/types";
+import { Blog } from "@/types";
 import Link from "next/link";
 
-export const title = "Image Card";
-
-const price = faker.commerce.price({ min: 100_000, max: 500_000, dec: 0 });
-const beds = faker.number.int({ min: 2, max: 5 });
-const baths = faker.number.int({ min: 1, max: 3 });
-const area = faker.number.int({ min: 200, max: 500 });
 
 // {
 //     "post_id": "249f2d5e-60c1-4bfc-b5df-0893486f6dbe",
@@ -40,7 +34,7 @@ const area = faker.number.int({ min: 200, max: 500 });
 //     }
 // }
 
-export default function BlogCard({ post }: { post: Post }) {
+export default function BlogCard({ post }: { post: Blog }) {
   return (
     <Card className="w-full max-w-md overflow-hidden p-4">
       <CardHeader>

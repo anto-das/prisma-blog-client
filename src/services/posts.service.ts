@@ -44,8 +44,9 @@ export const blogService = {
 
       const res = await fetch(url.toString(), config);
       const data = await res.json();
-      console.log(data.data);
-      return { data, error: null };
+      // console.log(data.data);
+      // return { data, error: null };
+      return data.data
     } catch (err: any) {
       return {
         data: null,
@@ -53,6 +54,18 @@ export const blogService = {
           message: err.message,
         },
       };
+    }
+  },
+
+  getBlogById: async (id: string) => {
+    // console.log("post id", id);
+    try {
+      const res = await fetch(`${env.BACKEND_URL}/posts/${id}`);
+      const data =  res.json();
+      // console.log(data);
+      return data;
+    } catch (e: any) {
+      return { error: e, data: null };
     }
   },
 };

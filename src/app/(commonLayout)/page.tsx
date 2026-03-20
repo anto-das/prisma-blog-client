@@ -1,17 +1,17 @@
 import BlogCard from "@/components/modules/homepage/BlogCard";
 import { blogService } from "@/services/posts.service";
-import { Post } from "@/types";
+import { Blog } from "@/types";
 
 const Home = async () => {
-  const { data } = await blogService.getBlog({ isFeatured: false,search:"one" },{cache:"no-store"});
-  console.log(data?.data);
+  const { data } = await blogService.getBlog();
+  console.log(data);
   return (
     <div>
       <h2 className="text-3xl font-bold text-center my-5">
-        Length : {data?.data?.data?.length}
+        Length : {data.length}
       </h2>
       <div className="w-11/12 mx-auto grid grid-cols-4 gap-3">
-        {data?.data?.data?.map((post: Post) => (
+        {data?.map((post: Blog) => (
           <BlogCard key={post?.post_id} post={post}></BlogCard>
         ))}
       </div>
