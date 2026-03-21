@@ -13,9 +13,9 @@ const AboutPage = () => {
   console.log("blog data: ", data);
   useEffect(() => {
     (async () => {
-      const { data: blogData, error } = await getBlogPosts();
+      const { data: blogData } = await getBlogPosts();
       setData(blogData);
-      setError(error);
+      setError({ message: "something went wrong." });
     })();
   }, []);
 

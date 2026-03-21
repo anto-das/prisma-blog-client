@@ -46,7 +46,7 @@ export const blogService = {
       const data = await res.json();
       // console.log(data.data);
       // return { data, error: null };
-      return { data, error: null };
+      return data.data;
     } catch (err: any) {
       return {
         data: null,
