@@ -3,7 +3,7 @@ import { blogService } from "@/services/posts.service";
 import { Blog } from "@/types";
 
 // const { data } = await blogService.getBlog();
-export const dynamicParams = false // true | false
+export const dynamicParams = true // true | false
 export async function generateStaticParams() {
   const { data } = await blogService.getBlog();
   return data.map((post: Blog) => ({ id: post.post_id })).slice(0,3);
