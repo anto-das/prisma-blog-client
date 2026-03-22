@@ -7,7 +7,17 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
 import { useForm } from "@tanstack/react-form";
-import { Field, FieldLabel } from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+
+import * as z from "zod";
+import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
+
+const formSchema = z.object({
+  name: z.string().min(1, "This Field is required.."),
+  email: z.email(),
+  password: z.string().min(8, "Minimum length is 8.."),
+});
 
 const RegisterForm = ({ ...props }) => {
   const form = useForm({
@@ -16,8 +26,15 @@ const RegisterForm = ({ ...props }) => {
       email: "",
       password: "",
     },
+    validators: {
+      onSubmit: formSchema,
+    },
     onSubmit: async ({ value }) => {
-      console.log("form clicked..", value);
+      const toastId = toast.loading("Creating User");
+      try {
+        const { data, error } = await authClient.signUp.email(value);
+        console.log("form clicked..", value);
+      } catch (error) {}
     },
   });
   return (
@@ -39,6 +56,8 @@ const RegisterForm = ({ ...props }) => {
               <form.Field
                 name="name"
                 children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
                   return (
                     <Field>
                       <FieldLabel htmlFor={field.name}>Name</FieldLabel>
@@ -52,6 +71,9 @@ const RegisterForm = ({ ...props }) => {
                         }}
                         placeholder={field.name}
                       />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
                     </Field>
                   );
                 }}
@@ -59,6 +81,8 @@ const RegisterForm = ({ ...props }) => {
               <form.Field
                 name="email"
                 children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
                   return (
                     <Field>
                       <FieldLabel htmlFor={field.name}>Email</FieldLabel>
@@ -72,6 +96,9 @@ const RegisterForm = ({ ...props }) => {
                         }}
                         placeholder={field.name}
                       />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
                     </Field>
                   );
                 }}
@@ -79,6 +106,8 @@ const RegisterForm = ({ ...props }) => {
               <form.Field
                 name="password"
                 children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
                   return (
                     <Field>
                       <FieldLabel htmlFor={field.name}>Password</FieldLabel>
@@ -92,6 +121,9 @@ const RegisterForm = ({ ...props }) => {
                         }}
                         placeholder={field.name}
                       />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
                     </Field>
                   );
                 }}
