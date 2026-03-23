@@ -43,6 +43,12 @@ const RegisterForm = ({ ...props }) => {
       }
     },
   });
+  const handleLoginWithGoogle = async () => {
+    const res = authClient.signIn.social({
+      provider: "google",
+      callbackURL: "http://localhost:3000",
+    });
+  };
   return (
     <section className={cn("h-screen bg-muted")}>
       <div className="flex h-full items-center justify-center">
@@ -137,8 +143,15 @@ const RegisterForm = ({ ...props }) => {
               {/* <div className="w-full">
                 <h1 className="text-3xl font-bold text-green-500">Name</h1>
               </div> */}
-              <Button type="submit" className="flex justify-end">
-                Submit
+              <Button type="submit" className="w-full">
+                Register
+              </Button>
+              <Button
+                type="submit"
+                onClick={handleLoginWithGoogle}
+                className="w-full"
+              >
+                Continue with google
               </Button>
             </form>
           </div>
