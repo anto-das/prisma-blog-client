@@ -33,8 +33,14 @@ const RegisterForm = ({ ...props }) => {
       const toastId = toast.loading("Creating User");
       try {
         const { data, error } = await authClient.signUp.email(value);
-        console.log("form clicked..", value);
-      } catch (error) {}
+        if (error) {
+          toast.error(error.message, { id: toastId });
+          return;
+        }
+        toast.success("user created successfully.", { id: toastId });
+      } catch (error) {
+        toast.error("something went wrong please try again.", { id: toastId });
+      }
     },
   });
   return (
