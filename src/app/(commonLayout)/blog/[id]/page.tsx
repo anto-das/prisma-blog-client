@@ -1,21 +1,22 @@
 import { env } from "@/env";
 import { blogService } from "@/services/posts.service";
 import { Blog } from "@/types";
+import { toast } from "sonner";
 
 // const { data } = await blogService.getBlog();
-export const dynamicParams = true // true | false
+export const dynamicParams = true; // true | false
 export async function generateStaticParams() {
   const { data } = await blogService.getBlog();
-  return data.map((post: Blog) => ({ id: post.post_id })).slice(0,3);
+  return data.map((post: Blog) => ({ id: post.post_id })).slice(0, 3);
 }
-
-// console.log("this is data: ",data)
-// const postIds = data.map((post: Blog) => ({ id: post.post_id }));
-// console.log("post id :",postIds)
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const data = await blogService.getBlogById(id);
+  if (data.success === false) {
+    console.log("error", data.message);
+    return;
+  }
   return (
     <div>
       <h1 className="text-3xl text-center text-blue-500">

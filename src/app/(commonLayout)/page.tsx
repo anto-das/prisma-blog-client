@@ -3,7 +3,7 @@ import { blogService } from "@/services/posts.service";
 import { Blog } from "@/types";
 
 const Home = async () => {
-  await new Promise((resolve) =>setTimeout(resolve,3000));
+  // await new Promise((resolve) =>setTimeout(resolve,3000));
   // await new Promise((resolve) => setTimeout(resolve, 4000));
   const { data } = await blogService.getBlog();
   console.log(data);

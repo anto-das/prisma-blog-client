@@ -5,8 +5,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { getUserInfo } from "../actions/user.action";
 
-export default function Page({
+export default async function Page({
   children,
   adminSlot,
   userSlot,
@@ -15,9 +16,11 @@ export default function Page({
   adminSlot: React.ReactNode;
   userSlot: React.ReactNode;
 }) {
+  const { data } = await getUserInfo();
   const userInfo = {
-    role: "admin",
+    role: data?.user?.role,
   };
+  console.log(data.user.role);
   return (
     <SidebarProvider>
       <AppSidebar user={userInfo} />
@@ -31,7 +34,7 @@ export default function Page({
             />
           </div>
         </header>
-        <div>{userInfo.role === "admin" ? adminSlot : userSlot}</div>
+        <div>{userInfo.role === "ADMIN" ? adminSlot : userSlot}</div>
       </SidebarInset>
     </SidebarProvider>
   );

@@ -18,10 +18,10 @@ export function AppSidebar({
 }: { user: { role: string } } & React.ComponentProps<typeof Sidebar>) {
   let routes: Route[] = [];
   switch (user.role) {
-    case "admin":
+    case "ADMIN":
       routes = adminRoutes;
       break;
-    case "user":
+    case "USER":
       routes = userRoutes;
       break;
     default:
